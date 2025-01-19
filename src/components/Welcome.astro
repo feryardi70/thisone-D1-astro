@@ -1,0 +1,125 @@
+---
+//import astroLogo from '../assets/astro.svg';
+import background from '../assets/background.svg';
+import DarkModeButton from './DarkModeButton.astro';
+---
+
+<div id="container" class="dark:bg-gray-900 text-black dark:text-white">
+	<img id="background" src={background.src} alt="" fetchpriority="high" />
+	<main class="container mx-auto px-4 lg:px-8 py-8 flex justify-evenly">
+		<div>
+		<!-- Hero Section --> 
+		<section class="mb-12">
+		  <h1 class="text-4xl font-bold mb-4 text-center">Welcome to My Blog</h1>
+		  <p class="text-lg text-gray-600 text-center">
+			Discover articles, tutorials, and insights on technology, design, and more.
+		  </p>
+		</section>
+	  
+		<!-- Featured Posts -->
+		<section class="mb-12">
+		  <h2 class="text-2xl font-semibold mb-6">Featured Posts</h2>
+		  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+			<!-- Example blog post card -->
+			<article class="bg-white shadow-md rounded-lg overflow-hidden">
+			  <img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+			  <div class="p-3">
+				<h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
+				<p class="text-gray-600 mb-4">A short description of the blog post content...</p>
+				<a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+			  </div>
+			</article>
+			<!-- Repeat for other posts -->
+			<article class="bg-white shadow-md rounded-lg overflow-hidden">
+				<img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+				<div class="p-4">
+				  <h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
+				  <p class="text-gray-600 mb-4">A short description of the blog post content...</p>
+				  <a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+				</div>
+			  </article>
+			  <article class="bg-white shadow-md rounded-lg overflow-hidden">
+				<img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+				<div class="p-4">
+				  <h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
+				  <p class="text-gray-600 mb-4">A short description of the blog post content...</p>
+				  <a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+				</div>
+			  </article>
+			  <article class="bg-white shadow-md rounded-lg overflow-hidden">
+				<img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+				<div class="p-4">
+				  <h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
+				  <p class="text-gray-600 mb-4">A short description of the blog post content...</p>
+				  <a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+				</div>
+			  </article>
+		  </div>
+		</section>
+		</div>
+		
+		<div>
+		<!-- Categories/Tags -->
+		<section class="mb-3">
+		  <h2 class="text-2xl font-semibold mb-6">Categories</h2>
+		  <div class="flex flex-wrap gap-3">
+			<a href="/category/tech" class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Tech</a>
+			<a href="/category/design" class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Design</a>
+			<a href="/category/tutorials" class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Tutorials</a>
+		  </div>
+		</section>
+		<DarkModeButton />
+	  
+		<!-- Recent Posts -->
+		<section class="mt-12">
+		  <h2 class="text-2xl font-semibold mb-6">Recent Posts</h2>
+		  <div class="space-y-6">
+			<!-- Example recent post -->
+			<article>
+			  <h3 class="text-xl font-semibold"><a href="/post/2" class="hover:underline">Another Blog Post</a></h3>
+			  <p class="text-sm text-gray-500">Posted on January 15, 2025</p>
+			  <p class="text-gray-600">A brief overview of what this blog post covers...</p>
+			</article>
+			<!-- Repeat for other recent posts -->
+		  </div>
+		</section>
+		</div>
+	  </main>
+	  
+
+<style>
+	#background {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		z-index: -1;
+		filter: blur(100px);
+	}
+
+	#container {
+		font-family: Inter, Roboto, 'Helvetica Neue', 'Arial Nova', 'Nimbus Sans', Arial, sans-serif;
+	}
+
+	@media screen and (max-height: 368px) {
+		#news {
+			display: none;
+		}
+	}
+
+	@media screen and (max-width: 768px) {
+		#container {
+			display: flex;
+			flex-direction: column;
+		}
+
+		#hero {
+			display: block;
+			padding-top: 10%;
+		}
+		h1 {
+			line-height: 1.5;
+		}
+	}
+</style>

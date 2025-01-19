@@ -1,0 +1,51 @@
+---
+// sadfdsgf
+---  
+<header class="sticky top-0 z-50 bg-green-950 shadow-lg">
+    <nav class="container mx-auto flex items-center justify-between px-4 py-3">
+      <!-- Logo -->
+      <div class="text-white text-4xl font-bold">
+        <a href="/" class="hover:text-purple-300">This One</a>
+      </div>
+  
+      <!-- Menu Links -->
+      <ul class="hidden md:flex space-x-6 text-xl">
+        <li><a href="/" class="text-white hover:text-purple-300">Home</a></li>
+        <li><a href="/about" class="text-white hover:text-purple-300">About</a></li>
+        <li><a href="/post" class="text-white hover:text-purple-300">Post</a></li>
+        <li><a href="/services" class="text-white hover:text-purple-300">Services</a></li>
+        <li><a href="/contact" class="text-white hover:text-purple-300">Contact</a></li>
+      </ul>
+  
+      <!-- Mobile Menu Toggle -->
+      <div class="md:hidden">
+        <button id="menuToggle" class="text-white hover:text-purple-300 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-purple-800">
+      <ul class="flex flex-col space-y-2 p-4">
+        <li><a href="/" class="text-white hover:text-purple-300">Home</a></li>
+        <li><a href="/about" class="text-white hover:text-purple-300">About</a></li>
+        <li><a href="/services" class="text-white hover:text-purple-300">Services</a></li>
+        <li><a href="/contact" class="text-white hover:text-purple-300">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+  
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+  
+    if (menuToggle && mobileMenu) {
+      menuToggle.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+    }
+  </script>
+  
