@@ -3,7 +3,17 @@ export default {
   darkMode: "class", // Enables class-based dark mode toggle
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        slideIn: {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" },
+        },
+      },
+      animation: {
+        slideIn: "slideIn 0.6s ease-out forwards",
+      },
+    },
   },
   plugins: [],
 };

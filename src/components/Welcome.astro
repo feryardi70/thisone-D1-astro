@@ -10,8 +10,8 @@ import DarkModeButton from './DarkModeButton.astro';
 		<div>
 		<!-- Hero Section --> 
 		<section class="mb-12">
-		  <h1 class="text-4xl font-bold mb-4 text-center">Welcome to My Blog</h1>
-		  <p class="text-lg text-gray-600 text-center">
+		  <h1 class="text-4xl font-bold mb-4 text-center text-orange-950">Welcome to My Blog</h1>
+		  <p class="text-lg text-red-950 text-center">
 			Discover articles, tutorials, and insights on technology, design, and more.
 		  </p>
 		</section>
@@ -21,39 +21,57 @@ import DarkModeButton from './DarkModeButton.astro';
 		  <h2 class="text-2xl font-semibold mb-6">Featured Posts</h2>
 		  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
 			<!-- Example blog post card -->
-			<article class="bg-white shadow-md rounded-lg overflow-hidden">
+			<div class="relative"> 
+			<article class="bg-amber-50 shadow-lg border border-fuchsia-900 rounded-lg transform opacity-0 animate-slideIn overflow-hidden">
 			  <img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
 			  <div class="p-3">
-				<h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
-				<p class="text-gray-600 mb-4">A short description of the blog post content...</p>
-				<a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+				<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/post/1">Blog Post Title</a></h3>
+				<p class="text-red-950 mb-4">A short description of the blog post content...</p>
+				<a href="/post/1" class="text-violet-800 hover:underline">Read more</a>
 			  </div>
 			</article>
+			</div>
 			<!-- Repeat for other posts -->
-			<article class="bg-white shadow-md rounded-lg overflow-hidden">
-				<img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
-				<div class="p-4">
-				  <h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
-				  <p class="text-gray-600 mb-4">A short description of the blog post content...</p>
-				  <a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+			<div class="relative"> 
+				<article class="bg-amber-50 shadow-lg border border-fuchsia-900 rounded-lg transform opacity-0 animate-slideIn overflow-hidden">
+				  <img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+				  <div class="p-3">
+					<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/post/1">Blog Post Title</a></h3>
+					<p class="text-red-950 mb-4">A short description of the blog post content...</p>
+					<a href="/post/1" class="text-violet-800 hover:underline">Read more</a>
+				  </div>
+				</article>
 				</div>
-			  </article>
-			  <article class="bg-white shadow-md rounded-lg overflow-hidden">
-				<img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
-				<div class="p-4">
-				  <h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
-				  <p class="text-gray-600 mb-4">A short description of the blog post content...</p>
-				  <a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+				<div class="relative"> 
+					<article class="bg-amber-50 shadow-lg border border-fuchsia-900 rounded-lg transform opacity-0 animate-slideIn overflow-hidden">
+					  <img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+					  <div class="p-3">
+						<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/post/1">Blog Post Title</a></h3>
+						<p class="text-red-950 mb-4">A short description of the blog post content...</p>
+						<a href="/post/1" class="text-violet-800 hover:underline">Read more</a>
+					  </div>
+					</article>
 				</div>
-			  </article>
-			  <article class="bg-white shadow-md rounded-lg overflow-hidden">
-				<img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
-				<div class="p-4">
-				  <h3 class="text-xl font-semibold mb-2"><a href="/post/1">Blog Post Title</a></h3>
-				  <p class="text-gray-600 mb-4">A short description of the blog post content...</p>
-				  <a href="/post/1" class="text-blue-500 hover:underline">Read more</a>
+				<div class="relative"> 
+					<article class="bg-amber-50 shadow-lg border border-fuchsia-900 rounded-lg transform opacity-0 animate-slideIn overflow-hidden">
+						  <img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+						  <div class="p-3">
+							<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/post/1">Blog Post Title</a></h3>
+							<p class="text-red-950 mb-4">A short description of the blog post content...</p>
+							<a href="/post/1" class="text-violet-800 hover:underline">Read more</a>
+						  </div>
+					</article>
 				</div>
-			  </article>
+				<div class="relative"> 
+						<article class="bg-amber-50 shadow-lg border border-fuchsia-900 rounded-lg transform opacity-0 animate-slideIn overflow-hidden">
+							  <img src="path/to/image.jpg" alt="Post Image" class="w-full h-48 object-cover">
+							  <div class="p-3">
+								<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/post/1">Blog Post Title</a></h3>
+								<p class="text-red-950 mb-4">A short description of the blog post content...</p>
+								<a href="/post/1" class="text-violet-800 hover:underline">Read more</a>
+							  </div>
+						</article>
+				</div>
 		  </div>
 		</section>
 		</div>
@@ -63,9 +81,9 @@ import DarkModeButton from './DarkModeButton.astro';
 		<section class="mb-3">
 		  <h2 class="text-2xl font-semibold mb-6">Categories</h2>
 		  <div class="flex flex-wrap gap-3">
-			<a href="/category/tech" class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Tech</a>
-			<a href="/category/design" class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Design</a>
-			<a href="/category/tutorials" class="px-3 py-1 bg-gray-200 text-gray-800 rounded hover:bg-gray-300">Tutorials</a>
+			<a href="/category/tech" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Tech</a>
+			<a href="/category/design" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Design</a>
+			<a href="/category/tutorials" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Tutorials</a>
 		  </div>
 		</section>
 		<DarkModeButton />
@@ -78,7 +96,7 @@ import DarkModeButton from './DarkModeButton.astro';
 			<article>
 			  <h3 class="text-xl font-semibold"><a href="/post/2" class="hover:underline">Another Blog Post</a></h3>
 			  <p class="text-sm text-gray-500">Posted on January 15, 2025</p>
-			  <p class="text-gray-600">A brief overview of what this blog post covers...</p>
+			  <p class="text-green-950">A brief overview of what this blog post covers...</p>
 			</article>
 			<!-- Repeat for other recent posts -->
 		  </div>
