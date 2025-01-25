@@ -13,6 +13,9 @@ export default {
       animation: {
         slideIn: "slideIn 0.6s ease-out forwards",
       },
+      backgroundImage: {
+        "mtf-bg": "url('/src/assets/bg-mtf.webp')",
+      },
     },
   },
   plugins: [],
