@@ -15,6 +15,7 @@ export default {
       },
       backgroundImage: {
         "mtf-bg": "url('/src/assets/bg-mtf.webp')",
+        "es-burned": "url('/src/assets/carousel-1.jpg')",
       },
     },
   },

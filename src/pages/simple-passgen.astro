@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout>
+    <Navbar />
+    <div class="">
+        <div class="bg-es-burned min-h-72">
+            <div class="bg-white/30 backdrop-brightness-50 flex flex-col min-h-72 items-center justify-center">
+                <h1 class="text-green-50 sm:text-3xl md:text-6xl font-bold font-mono tracking-wide mb-4">Simple Password Generator</h1>
+                <h1 class="text-green-50 sm:text-3xl md:text-6xl font-mono tracking-wider mb-4">(8 Karakter)</h1>
+                <p class="text-green-50 sm:text-lg md:text-2xl font-mono">Home / Page / Simple Password Generator</p>  
+            </div>
+        </div>
+        <div class="bg-gradient-to-b from-purple-50 to-fuchsia-600 overflow-hidden min-h-80 flex items-center justify-center">
+            <div class="border border-red-800 min-h-64 w-[75%] rounded-lg">
+                <div class="w-full border-b border-red-800">
+                    <h1 class="font-bold text-2xl text-center py-3">Silahkan copy hasilnya! (klik tombol untuk generate baru)</h1>
+                </div>
+                <div class="mt-1 w-full border-b border-red-800"></div>
+                <div class="mt-10 flex flex-row items-center justify-center gap-3">
+                    <div class="w-[30%] min-h-12 border-b border-red-800 flex items-center justify-center">
+                        <p id="demo" class="text-center py-2 ml-14"></p>
+                    </div>
+                    <button class="rounded-lg bg-green-400 hover:bg-green-500 px-4 py-1" id="copyBtn">Copy</button>
+                </div>
+                <div class="flex justify-center items-center">
+                    <button id="generateBtn" class="mt-5 rounded-lg bg-green-400 hover:bg-green-500 px-2">Klik to generate</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <Footer />
+</Layout>
+
+<script>
+    (function() {
+      const arr = [
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+        "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+        "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "!", "#"
+      ];
+  
+      function getDemoElement() {
+        const el = document.getElementById("demo");
+        if (!el) throw new Error("Element #demo tidak ditemukan");
+        return el;
+      }
+  
+      function generatePassword() {
+        let text = "";
+        for (let j = 0; j < 8; j++) {
+          const rand = Math.floor(Math.random() * arr.length);
+          text += arr[rand];
+        }
+        getDemoElement().textContent = text;
+      }
+  
+      async function copyToClipboard() {
+        try {
+          const text = getDemoElement().textContent;
+          if (!text) {
+            alert("Tidak ada password yang bisa dicopy!");
+            return;
+          }
+          
+          await navigator.clipboard.writeText(text);
+          
+          // Feedback visual
+          const copyBtn = document.getElementById("copyBtn");
+          if (copyBtn) {
+            const originalText = copyBtn.textContent;
+            copyBtn.textContent = "Copied!";
+            copyBtn.classList.add("btn-success");
+            setTimeout(() => {
+              copyBtn.textContent = originalText;
+              copyBtn.classList.remove("btn-success");
+            }, 2000);
+          }
+        } catch (err) {
+          console.error("Gagal menyalin:", err);
+          alert("Gagal menyalin ke clipboard!");
+        }
+      }
+  
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("generateBtn")?.addEventListener("click", generatePassword);
+        document.getElementById("copyBtn")?.addEventListener("click", copyToClipboard);
+      });
+    })();
+  </script>
+
+<style>
+    /* Animasi sederhana */
+    .btn-success {
+      transition: all 0.3s ease;
+    }
+</style>
