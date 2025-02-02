@@ -5,7 +5,7 @@ import background from '../assets/background.svg';
 
 <div>
 	<img id="background" src={background.src} alt="" fetchpriority="high" />
-	<main class="container mx-auto px-4 lg:px-8 py-8 flex justify-evenly">
+	<main class="container px-4 lg:px-8 py-8 flex justify-evenly">
 		<div>
 		<!-- Hero Section --> 
 		<section class="mb-12">
@@ -18,13 +18,13 @@ import background from '../assets/background.svg';
 		<!-- Featured Posts -->
 		<section class="mb-12">
 		  <h2 class="text-2xl font-semibold mb-6">Featured Posts</h2>
-		  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-5">
+		  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
 			<!-- Example blog post card -->
 			<div class="relative"> 
 			<article class="bg-amber-50 shadow-lg border border-fuchsia-900 rounded-lg transform opacity-0 animate-slideIn overflow-hidden">
 			  <img src="img/nNq1r.png" alt="Post Image" class="w-full h-48 object-cover">
 			  <div class="p-3">
-				<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/mtf">MTF 10% Calculatr</a></h3>
+				<h3 class="text-xl font-semibold mb-2 text-orange-950"><a href="/mtf">MTF 10% Calculator</a></h3>
 				<p class="text-red-950 mb-4">Ingin mencari nilai MTF?...</p>
 				<a href="/mtf" class="text-violet-800 hover:underline">Read more</a>
 			  </div>
@@ -41,21 +41,17 @@ import background from '../assets/background.svg';
 				  </div>
 				</article>
 				</div>
-				
-				
-				
 		  </div>
 		</section>
 		</div>
 		
-		<div>
+		<div class="ml-3">
 		<!-- Categories/Tags -->
 		<section class="mb-3">
 		  <h2 class="text-2xl font-semibold mb-6">Categories</h2>
 		  <div class="flex flex-wrap gap-3">
-			<a href="/category/tech" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Tech</a>
-			<a href="/category/design" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Design</a>
-			<a href="/category/tutorials" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Tutorials</a>
+			<a href="" class="px-3 py-1 bg-green-300 text-gray-800 rounded hover:bg-gray-300">Uncategorized</a>
+			
 		  </div>
 		</section>
 	  
@@ -73,7 +69,7 @@ import background from '../assets/background.svg';
 		  </div>
 		</section>
 		</div>
-	  </main>
+	</main>
 	  
 
 <style>

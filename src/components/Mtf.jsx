@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import SpinnerCss from "./SpinnerCss";
 
 const DragAndDropUpload = () => {
   const [file, setFile] = useState(null);
@@ -53,6 +54,7 @@ const DragAndDropUpload = () => {
     if (!file) {
       alert("No file selected.");
       setLoading(false);
+      setMessage("");
       return;
     }
 
@@ -61,13 +63,22 @@ const DragAndDropUpload = () => {
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        const response = await axios.post("https://thisone-py.onrender.com/upload", formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
-        setMessage("Processing Done!");
-        setUploadStatus("Your result is ready");
-        setLoading(false);
-        setResult(response.data);
+        const serverStatus = await axios.get("https://thisone-py.onrender.com");
+        const data = serverStatus.data.message;
+        
+        if (data == "Hello from FastAPI"){
+          const response = await axios.post("https://thisone-py.onrender.com/upload", formData, {
+            headers: { "Content-Type": "multipart/form-data" },
+          });
+          setMessage("");
+          setUploadStatus("Your result is ready");
+          setLoading(false);
+          setResult(response.data);
+        } else {
+          setMessage("server is busy, please refresh this page");
+          setUploadStatus("");
+          setLoading(false);
+        }
       } catch (error) {
         setRetryCount(attempt);
 
@@ -107,6 +118,7 @@ const DragAndDropUpload = () => {
         </p>
       )}
       {uploadStatus && <p className={`mt-4 text-2xl underline font-medium ${uploadStatus.includes("Your result is ready") ? "text-green-900" : "text-red-500"}`}>{uploadStatus}</p>}
+      {loading && <SpinnerCss />}
       {result && (
         <div>
           <p className="text-green-950 text-2xl font-bold mt-2">MTF 10% Frequency: {result.mtf_10_frequency}</p>
