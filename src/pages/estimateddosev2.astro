@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+import Navbar from '../components/Navbar.astro';
+---
+
+<Layout>
+	<Navbar />
+    <div class="px-6 py-10">
+        <h1 class="text-2xl font-bold mb-4 text-green-950 dark:text-green-50">Perkiraan Dosis Pasien (RU)</h1>
+        <h3 class="text-lg font-bold mb-4 text-green-950 dark:text-green-50">
+          Silahkan masukkan data output (keluaran radiasi) yang diperoleh dari data Uji Kesesuaian
+        </h3>
+    
+        <form name="estdose" id="estdose" class="mb-2">
+          <table class="table-auto w-[80%] border-collapse border border-gray-300">
+            <thead class="bg-green-800">
+              <tr class="text-fuchsia-50">
+                <th class="border border-gray-300">No.</th>
+                <th class="border border-gray-300 text-start pl-2 py-4">Tegangan Set (kV)</th>
+                <th class="border border-gray-300 text-start pl-2 py-4">Output(uGy/mAs)</th>
+              </tr>
+            </thead>
+    
+            <tbody class="text-green-950">
+              {[1, 2, 3, 4, 5].map((num) => (
+                <tr>
+                  <th class="border border-gray-300 p-2"><div class="text-green-950 dark:text-green-50">{num}</div></th>
+                  <td class="border border-gray-300 p-2">
+                    <input
+                      type="number"
+                      min="0"
+                      class="w-24 border rounded p-2 mx-auto"
+                      id={`x${num}`}
+                      name={`x${num}`}
+                      placeholder={num === 1 ? "50" : num === 2 ? "60" : num === 3 ? "70" : num === 4 ? "80" : "90"}
+                    />
+                  </td>
+                  <td class="border border-gray-300 p-2">
+                    <input
+                      type="number"
+                      min="0"
+                      step=".01"
+                      class="w-24 border rounded p-2 mx-auto"
+                      id={`y${num}`}
+                      name={`y${num}`}
+                      placeholder={num === 1 ? "10.00" : num === 2 ? "20.00" : num === 3 ? "30.00" : num === 4 ? "40.00" : "50.00"}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+    
+          <h3 class="text-lg font-bold mt-4 mb-4 text-green-950 dark:text-green-50">
+            Sekarang silahkan masukkan parameter eksposi yang ingin dihitung dosisnya
+          </h3>
+    
+          <div class="flex gap-4 mb-6">
+            <div class="flex items-center gap-2 text-green-950">
+              <input
+                type="number"
+                min="0"
+                class="w-24 border rounded p-2"
+                id="v"
+                name="v"
+                placeholder="55"
+              />
+              <span class="text-green-700">kV</span>
+            </div>
+    
+            <div class="flex items-center gap-2 text-green-950">
+              <input
+                type="number"
+                min="0"
+                step=".1"
+                class="w-24 border rounded p-2"
+                id="w"
+                name="w"
+                placeholder="4.5"
+              />
+              <span class="text-green-700">mAs</span>
+            </div>
+          </div>
+    
+          <button
+            type="submit"
+            id="calculate"
+            class="bg-green-700 text-white px-6 py-2 rounded hover:bg-green-900 transition-colors"
+          >
+            Calculate
+          </button>
+        </form>
+    
+        <h3 id="demo" class="text-lg font-semibold text-green-950 dark:text-green-50"></h3>
+    </div>  
+	<Footer />
+</Layout>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const form = document.getElementById("estdose") as HTMLFormElement | null;
+      
+      if (!form) return;
+  
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+  
+        // Type assertion untuk form elements
+        const elements = form.elements as unknown as {
+          [key: string]: HTMLInputElement
+        };
+  
+        // Collect all input values dengan type checking
+        const inputs = Array.from({ length: 5 }, (_, i) => {
+          const x = elements[`x${i + 1}`]?.valueAsNumber || 0;
+          const y = elements[`y${i + 1}`]?.valueAsNumber || 0;
+          return { x, y };
+        });
+  
+        const v = elements.v?.valueAsNumber || 0;
+        const w = elements.w?.valueAsNumber || 0;
+  
+        // Validasi input
+        if (inputs.some(input => input.x <= 0 || input.y <= 0) || v <= 0 || w <= 0) {
+          alert("Mohon isi semua nilai dengan angka yang valid!");
+          return;
+        }
+  
+        // Calculate logs
+        const lnSum = inputs.reduce((acc, curr) => ({
+          lnx: acc.lnx + Math.log(curr.x),
+          lny: acc.lny + Math.log(curr.y)
+        }), { lnx: 0, lny: 0 });
+  
+        const a = (lnSum.lny - 2 * lnSum.lnx) / 5;
+        const A = Math.exp(a);
+        const y = A * Math.pow(v, 2);
+        const dose = ((y * w * 1.35) / 1000).toFixed(4);
+  
+        document.getElementById("demo")!.textContent = 
+          `Perkiraan dosis pada SSD 100 cm untuk parameter eksposi ${v} kV dan ${w} mAs = ${dose} mGy`;
+      });
+    });
+  </script>
