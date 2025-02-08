@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import DragAndDropUpload from '../components/Mtf';
 
-const baseURL = import.meta.env.VITE_BASE_URL || "https://hono-app.fery-ardiansyah94747.workers.dev";
+const baseURL = import.meta.env.VITE_BASE_URL;
 
 const response = await fetch(`${baseURL}/cookie`, {
     credentials: "include",
