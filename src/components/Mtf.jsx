@@ -61,12 +61,38 @@ const DragAndDropUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
 
+    const token = document.cookie
+      ?.split("; ")
+      .find((row) => row.startsWith("token="))
+      ?.split("=")[1];
+
+    //console.log("Token from Cookie:", token);
+
+    const reqPermission = await axios.post(
+      "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
+      {}, // Empty request body (use null if you need no payload)
+      {
+        withCredentials: true, // Required for sending cookies
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (reqPermission.data.message !== "valid") {
+      setMessage("server is busy, please refresh this page and try again");
+      setUploadStatus("");
+      setLoading(false);
+      return;
+    }
+
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
-        const serverStatus = await axios.get("https://thisone-py.onrender.com");
+        const serverStatus = await axios.get("https://thisone-py.onrender.com/health");
         const data = serverStatus.data.message;
-        
-        if (data == "Hello from FastAPI"){
+
+        if (data == "healthy") {
           const response = await axios.post("https://thisone-py.onrender.com/upload", formData, {
             headers: { "Content-Type": "multipart/form-data" },
           });
@@ -75,7 +101,7 @@ const DragAndDropUpload = () => {
           setLoading(false);
           setResult(response.data);
         } else {
-          setMessage("server is busy, please refresh this page");
+          setMessage("server is busy, please refresh this page and try again");
           setUploadStatus("");
           setLoading(false);
         }
@@ -83,7 +109,7 @@ const DragAndDropUpload = () => {
         setRetryCount(attempt);
 
         if (attempt === maxAttempts) {
-          setMessage("Request time out, please refresh the page!");
+          setMessage("Request time out, please refresh the page and try again");
           setLoading(false);
         } else {
           setMessage(`Attempt ${attempt} failed. Retrying in ${retryDelay / 1000} seconds...`);

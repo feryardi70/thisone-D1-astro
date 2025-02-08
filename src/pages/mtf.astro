@@ -3,6 +3,18 @@ import Layout from '../layouts/Layout.astro';
 //import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
 import DragAndDropUpload from '../components/Mtf';
+
+const baseURL = import.meta.env.VITE_BASE_URL;
+
+const response = await fetch(`${baseURL}/cookie`, {
+    credentials: "include",
+});
+const data = await response.json() as any;
+const token = data.token;
+
+if (data.message == "no message"){
+	Astro.response.headers.set('Set-Cookie', `token=${token}; Path=/; maxAge=600;`);
+}
 ---
 
 <Layout>
