@@ -20,7 +20,7 @@ if (data.message == "no message"){
 }
 ---
 
-<Layout>
+<Layout title="Home Page">
 	<Navbar />
 	<Welcome />
 	<div class="hidden" id="pyfXT">{pyURL}</div>
@@ -29,7 +29,6 @@ if (data.message == "no message"){
 
 <script>
 	const py = document.getElementById('pyfXT')?.innerHTML || "";
-	//console.log(py);
 
 	const healtCheck = async () => {
 		await fetch(py, {

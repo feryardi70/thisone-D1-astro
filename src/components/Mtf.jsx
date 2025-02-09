@@ -13,6 +13,33 @@ const DragAndDropUpload = () => {
 
   const maxAttempts = 3;
   const retryDelay = 1000;
+  async function fetchToken() {
+    // ✅ Prevent execution in server environment
+    if (typeof window === "undefined") {
+      console.warn("Skipping token request: running in a non-browser environment.");
+      return;
+    }
+
+    try {
+      const setToken = await axios.get("https://hono-app.fery-ardiansyah94747.workers.dev/cookie", {
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (setToken.data?.token) {
+        localStorage.setItem("token", setToken.data.token);
+        //console.log("Token stored in localStorage:", setToken.data.token);
+      } else {
+        console.error("Token not found in response:", setToken);
+      }
+    } catch (error) {
+      console.error("Error fetching token:", error);
+    }
+  }
+
+  // ✅ Run the function only if window is available
+  if (typeof window !== "undefined") {
+    fetchToken();
+  }
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -61,12 +88,8 @@ const DragAndDropUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const token = document.cookie
-      ?.split("; ")
-      .find((row) => row.startsWith("token="))
-      ?.split("=")[1];
-
-    //console.log("Token from Cookie:", token);
+    const token = localStorage.getItem("token");
+    console.log("Token value:", token);
 
     const reqPermission = await axios.post(
       "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
