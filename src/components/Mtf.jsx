@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import SpinnerCss from "./SpinnerCss";
+import MTFLoading from "./MTFLoading";
 
 const DragAndDropUpload = () => {
   const [file, setFile] = useState(null);
@@ -167,7 +167,7 @@ const DragAndDropUpload = () => {
         </p>
       )}
       {uploadStatus && <p className={`mt-4 text-2xl underline font-medium ${uploadStatus.includes("Your result is ready") ? "text-green-900" : "text-red-500"}`}>{uploadStatus}</p>}
-      {loading && <SpinnerCss />}
+      {loading && <MTFLoading />}
       {result && (
         <div>
           <p className="text-green-950 text-2xl font-bold mt-2">MTF 10% Frequency: {result.mtf_10_frequency}</p>
