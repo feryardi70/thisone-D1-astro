@@ -89,7 +89,7 @@ const DragAndDropUpload = () => {
     formData.append("file", file);
 
     const token = localStorage.getItem("token");
-    console.log("Token value:", token);
+    //console.log("Token value:", token);
 
     const reqPermission = await axios.post(
       "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
