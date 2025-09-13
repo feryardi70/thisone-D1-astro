@@ -13,33 +13,33 @@ const DragAndDropUpload = () => {
 
   const maxAttempts = 3;
   const retryDelay = 1000;
-  async function fetchToken() {
-    // ✅ Prevent execution in server environment
-    if (typeof window === "undefined") {
-      console.warn("Skipping token request: running in a non-browser environment.");
-      return;
-    }
+  // async function fetchToken() {
+  // ✅ Prevent execution in server environment
+  //   if (typeof window === "undefined") {
+  //     console.warn("Skipping token request: running in a non-browser environment.");
+  //     return;
+  //   }
 
-    try {
-      const setToken = await axios.get("https://hono-app.fery-ardiansyah94747.workers.dev/cookie", {
-        headers: { "Content-Type": "application/json" },
-      });
+  //   try {
+  //     const setToken = await axios.get("https://hono-app.fery-ardiansyah94747.workers.dev/cookie", {
+  //       headers: { "Content-Type": "application/json" },
+  //     });
 
-      if (setToken.data?.token) {
-        localStorage.setItem("token", setToken.data.token);
-        //console.log("Token stored in localStorage:", setToken.data.token);
-      } else {
-        console.error("Token not found in response:", setToken);
-      }
-    } catch (error) {
-      console.error("Error fetching token:", error);
-    }
-  }
+  //     if (setToken.data?.token) {
+  //       localStorage.setItem("token", setToken.data.token);
+  //       //console.log("Token stored in localStorage:", setToken.data.token);
+  //     } else {
+  //       console.error("Token not found in response:", setToken);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching token:", error);
+  //   }
+  // }
 
-  // ✅ Run the function only if window is available
-  if (typeof window !== "undefined") {
-    fetchToken();
-  }
+  // // ✅ Run the function only if window is available
+  // if (typeof window !== "undefined") {
+  //   fetchToken();
+  // }
 
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
@@ -88,20 +88,20 @@ const DragAndDropUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    const token = localStorage.getItem("token");
+    // const token = localStorage.getItem("token");
     //console.log("Token value:", token);
 
-    const reqPermission = await axios.post(
-      "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
-      {}, // Empty request body (use null if you need no payload)
-      {
-        withCredentials: true, // Required for sending cookies
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      }
-    );
+    // const reqPermission = await axios.post(
+    //   "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
+    //   {}, // Empty request body (use null if you need no payload)
+    //   {
+    //     withCredentials: true, // Required for sending cookies
+    //     headers: {
+    //       Authorization: `Bearer ${token}`,
+    //       "Content-Type": "application/json",
+    //     },
+    //   }
+    // );
 
     // if (reqPermission.data.message !== "valid") {
     //   setMessage("server is busy, please refresh this page and try again");
