@@ -103,12 +103,12 @@ const DragAndDropUpload = () => {
       }
     );
 
-    if (reqPermission.data.message !== "valid") {
-      setMessage("server is busy, please refresh this page and try again");
-      setUploadStatus("");
-      setLoading(false);
-      return;
-    }
+    // if (reqPermission.data.message !== "valid") {
+    //   setMessage("server is busy, please refresh this page and try again");
+    //   setUploadStatus("");
+    //   setLoading(false);
+    //   return;
+    // }
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
