@@ -88,27 +88,27 @@ const DragAndDropUpload = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    // const token = localStorage.getItem("token");
-    //console.log("Token value:", token);
+    const token = localStorage.getItem("token");
+    console.log("Token value:", token);
 
-    // const reqPermission = await axios.post(
-    //   "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
-    //   {}, // Empty request body (use null if you need no payload)
-    //   {
-    //     withCredentials: true, // Required for sending cookies
-    //     headers: {
-    //       Authorization: `Bearer ${token}`,
-    //       "Content-Type": "application/json",
-    //     },
-    //   }
-    // );
+    const reqPermission = await axios.post(
+      "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
+      {}, // Empty request body (use null if you need no payload)
+      {
+        withCredentials: true, // Required for sending cookies
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
-    // if (reqPermission.data.message !== "valid") {
-    //   setMessage("server is busy, please refresh this page and try again");
-    //   setUploadStatus("");
-    //   setLoading(false);
-    //   return;
-    // }
+    if (reqPermission.data.message !== "valid") {
+      setMessage("server is busy, please refresh this page and try again");
+      setUploadStatus("");
+      setLoading(false);
+      return;
+    }
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
