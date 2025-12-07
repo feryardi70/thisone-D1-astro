@@ -111,8 +111,9 @@ const DragAndDropUpload = () => {
       return;
     }
 
+    setMtfUrl("https://thisone-py.onrender.com");
+
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-      setMtfUrl("https://thisone-py.onrender.com");
       try {
         const serverStatus = await axios.get(`${mtfUrl}/health`);
         const data = serverStatus.data.message;
