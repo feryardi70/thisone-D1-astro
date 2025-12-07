@@ -15,8 +15,7 @@ const response = await fetch(`${baseURL}/cookie`, {
 const data = await response.json() as any;
 const token = data.token;
 
-if (data.message == "no message"){
-    const { cookies } = Astro;
+const { cookies } = Astro;
 
 	cookies.set("token", token, {
     path: "/",
@@ -24,8 +23,7 @@ if (data.message == "no message"){
     httpOnly: true,
     secure: isProd,
     sameSite: "lax",
-  });
-}
+});
 ---
 
 <Layout title="MTF 10% Calculator">
