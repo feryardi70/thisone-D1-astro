@@ -10,10 +10,11 @@ const DragAndDropUpload = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [retryCount, setRetryCount] = useState(0);
-  const [mtfUrl, setMtfUrl] = useState("https://hono-app.fery-ardiansyah94747.workers.dev");
 
   const maxAttempts = 3;
   const retryDelay = 1000;
+  const permitCheckUrl = "https://hono-app.fery-ardiansyah94747.workers.dev";
+  const mtfUrl = "https://thisone-py.onrender.com";
 
   async function fetchToken() {
     // ✅ Prevent execution in server environment
@@ -23,7 +24,7 @@ const DragAndDropUpload = () => {
     }
 
     try {
-      const setToken = await axios.get(`${mtfUrl}/cookie`, {
+      const setToken = await axios.get(`${permitCheckUrl}/cookie`, {
         headers: { "Content-Type": "application/json" },
       });
 
@@ -93,7 +94,7 @@ const DragAndDropUpload = () => {
     const token = localStorage.getItem("token");
 
     const reqPermission = await axios.post(
-      `${mtfUrl}/cookie`,
+      `${permitCheckUrl}/cookie`,
       {}, // Empty request body (use null if you need no payload)
       {
         withCredentials: true, // Required for sending cookies
@@ -110,8 +111,6 @@ const DragAndDropUpload = () => {
       setLoading(false);
       return;
     }
-
-    setMtfUrl("https://thisone-py.onrender.com");
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
