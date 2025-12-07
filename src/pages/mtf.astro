@@ -3,27 +3,6 @@ import Layout from '../layouts/Layout.astro';
 //import Footer from '../components/Footer.astro';
 import Navbar from '../components/Navbar.astro';
 import DragAndDropUpload from '../components/Mtf';
-
-const baseURL = import.meta.env.VITE_BASE_URL;
-const nodeENV = import.meta.env.NODE_ENV;
-
-const isProd = nodeENV == 'production';
-
-const response = await fetch(`${baseURL}/cookie`, {
-    credentials: "include",
-});
-const data = await response.json() as any;
-const token = data.token;
-
-const { cookies } = Astro;
-
-	cookies.set("token", token, {
-    path: "/",
-    maxAge: 600,        // seconds
-    httpOnly: true,
-    secure: isProd,
-    sameSite: "lax",
-});
 ---
 
 <Layout title="MTF 10% Calculator">

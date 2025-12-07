@@ -13,6 +13,9 @@ const DragAndDropUpload = () => {
 
   const maxAttempts = 3;
   const retryDelay = 1000;
+
+  const baseUrl = import.meta.env.VITE_BASE_URL;
+  console.log(baseUrl);
   async function fetchToken() {
     // ✅ Prevent execution in server environment
     if (typeof window === "undefined") {
@@ -89,7 +92,6 @@ const DragAndDropUpload = () => {
     formData.append("file", file);
 
     const token = localStorage.getItem("token");
-    console.log("Token value:", token);
 
     const reqPermission = await axios.post(
       "https://hono-app.fery-ardiansyah94747.workers.dev/cookie",
