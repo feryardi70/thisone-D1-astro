@@ -5,6 +5,9 @@ import Navbar from '../components/Navbar.astro';
 import DragAndDropUpload from '../components/Mtf';
 
 const baseURL = import.meta.env.VITE_BASE_URL;
+const nodeENV = import.meta.env.NODE_ENV;
+
+const isProd = nodeENV == 'production';
 
 const response = await fetch(`${baseURL}/cookie`, {
     credentials: "include",
@@ -13,7 +16,15 @@ const data = await response.json() as any;
 const token = data.token;
 
 if (data.message == "no message"){
-	Astro.response.headers.set('Set-Cookie', `token=${token}; Path=/; maxAge=600;`);
+    const { cookies } = Astro;
+
+	cookies.set("token", token, {
+    path: "/",
+    maxAge: 600,        // seconds
+    httpOnly: true,
+    secure: isProd,
+    sameSite: "lax",
+  });
 }
 ---
 
